@@ -1,0 +1,35 @@
+#BlueJ class context
+comment0.target=SpaceInvader
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ SpaceInvader\ here.\r\n\ \r\n\ @author\ (John\ Henry)\ \r\n\ @version\ (1)\r\n
+comment1.params=
+comment1.target=SpaceInvader()
+comment1.text=\r\n\ SpaceInvader\ Constructor\r\n\r\n
+comment10.params=newSpeed
+comment10.target=void\ setSpeed(int)
+comment10.text=\r\n\ Method\ setSpeed\r\n\r\n\ @param\ newSpeed\ A\ parameter\r\n
+comment11.params=
+comment11.target=int\ getSpeed()
+comment11.text=\r\n\ Method\ getSpeed\r\n\r\n\ @return\ The\ return\ value\r\n
+comment2.params=invaderType\ invaderLayer\ invaderColumn
+comment2.target=SpaceInvader(int,\ int,\ int)
+comment2.text=\r\n\ SpaceInvader\ Constructor\r\n\r\n\ @param\ invaderType\ A\ parameter\r\n\ @param\ invaderLayer\ A\ parameter\r\n\ @param\ invaderColumn\ A\ parameter\r\n
+comment3.params=
+comment3.target=void\ dropDown()
+comment3.text=\r\n\ Method\ dropDown\r\n\ Deops\ the\ invader\ if\ level\ \=\ invader\ level\r\n
+comment4.params=
+comment4.target=void\ checkGameOver()
+comment4.text=\r\n\ Method\ checkGameOver\r\n\r\n
+comment5.params=
+comment5.target=void\ fire()
+comment5.text=\r\n\ Method\ fire\r\n\r\n
+comment6.params=
+comment6.target=void\ act()
+comment6.text=\r\n\ Act\ -\ do\ whatever\ the\ SpaceInvader\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment7.params=
+comment7.target=InvasionWorld\ getWorld()
+comment7.text=\r\n\ Method\ getWorld\r\n\r\n\ @return\ The\ return\ value\r\n
+comment8.params=
+comment8.target=int\ getColumn()
+comment9.params=
+comment9.target=int\ getLayer()
+numComments=12
