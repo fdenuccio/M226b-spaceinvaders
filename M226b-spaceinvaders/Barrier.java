@@ -14,10 +14,5 @@ public class Barrier extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
-        if (getOneIntersectingObject (ShipBullet.class) != null)
-        {
-            //getWorld().removeObject(this);
-        }
-    }    
+    }
 }

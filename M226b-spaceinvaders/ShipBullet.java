@@ -26,13 +26,14 @@ public class ShipBullet extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
+        // delete if out of screen
         if (getY() <= 0)
         {
             getWorld().removeObject(this);
         }
         else 
         {
+            // bullet movement & speed
             for (int i = 0; i < speed; i ++)
             {
                 setLocation(getX(), getY() - 1);
@@ -54,6 +55,7 @@ public class ShipBullet extends Actor
 
         if (getOneIntersectingObject (SpaceInvader.class) != null)
         {
+            // space invader hit detection
             getWorld().removeObject(getOneIntersectingObject (SpaceInvader.class));
             if (getWorld().getTimerSpeed() >= 25)
             {
@@ -61,6 +63,7 @@ public class ShipBullet extends Actor
             }
             Greenfoot.playSound("invaderkilled.wav");
             getWorld().setScore(getWorld().getScore()+ 50);
+            // win detection
             if (getWorld().getObjects(SpaceInvader.class).size() == 0)
             {
                 getWorld().gameOver(true);
@@ -70,6 +73,7 @@ public class ShipBullet extends Actor
         }
         else if (getOneIntersectingObject (Barrier.class) != null)
         {
+            // barrier hit detection
             getWorld().removeObject(getOneIntersectingObject (Barrier.class));
             getWorld().removeObject(this);
             return true;

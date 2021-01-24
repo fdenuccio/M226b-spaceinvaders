@@ -38,7 +38,7 @@ public class Ship extends Actor
      */
     public void checkKeys()
     {
-        //WASD or arrow keys 
+        // movement detection (WASD)
         if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
         {
             setLocation(getX() + speed, getY());
@@ -54,7 +54,8 @@ public class Ship extends Actor
         {
             counter --;
         }
-        // You can also press space instead of the up arrow
+        
+        // movement detection (arrow keys)
         if ((Greenfoot.isKeyDown("up") || (Greenfoot.isKeyDown("space")) || (Greenfoot.isKeyDown("w"))) && counter == 0)
         {
             ShipBullet shipBullet = new ShipBullet();

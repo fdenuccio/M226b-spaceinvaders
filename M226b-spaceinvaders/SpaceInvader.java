@@ -56,6 +56,7 @@ public class SpaceInvader extends Actor
      */
     public void dropDown()
     {
+        // spaceInvader downward movement
         if (level <getWorld().getInvaderLevel())
         {
             level++;
@@ -71,6 +72,7 @@ public class SpaceInvader extends Actor
      */
     private void checkGameOver()
     {
+        // game over if space invaders reach bottom edge
         if (getY() >= getWorld().getHeight()/2 + getWorld().getHeight()/3 + getWorld().getHeight()/10)
         {
             getWorld().gameOver(false);
@@ -83,6 +85,7 @@ public class SpaceInvader extends Actor
      */
     public void fire()
     {
+        // shoot function
         if (reloadCounter == 0 && explosion == 0)
         {
             if (this != null)
@@ -92,7 +95,6 @@ public class SpaceInvader extends Actor
                 
                 reloadCounter = reloadTime;
             }
-
         }
     }
 
@@ -109,15 +111,13 @@ public class SpaceInvader extends Actor
         }
         timer ++;
 
+        // sideward movement
         if (timer % getWorld().getTimerSpeed() == 0)
         {
-
             dropDown();
             setLocation(getX() + speed, getY());
         }
         checkGameOver();
-        // Last thing
-
     }
 
     /**

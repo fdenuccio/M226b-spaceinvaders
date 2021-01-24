@@ -14,14 +14,12 @@ public class health extends Actor
     public static int currentHealth = 2;
     public void act() 
     {
+        // remove 1 health
         if (InvaderBullet.damage==1)
         {
-            //getWorld().gameOver(false);
-            //getWorld().removeObject(getOneIntersectingObject (Ship.class));
             getWorld().removeObject(this);
             InvaderBullet.damage=0;
             currentHealth = currentHealth - 1;
         }
-
     }
 }

@@ -8,13 +8,14 @@ import greenfoot.*;
  */
 public class Score extends Actor
 {
-
+    // create scoreboard
     public Score()
     {
         GreenfootImage newImage = new GreenfootImage(108,36);
         setImage(newImage);
     }
 
+    // display & update score 
     public void setScore(int score)
     {
         GreenfootImage newImage = getImage();

@@ -13,7 +13,7 @@ public class InvasionWorld extends World
     private int timerSpeed = 50;
     private int fireSpeed = 60;
     private int counter = 0;
-    private int sound = 0;
+    private int sound = 1;
     private Ship player;
     private int LAYERS = 6;
     private int COLUMNS=11;
@@ -34,6 +34,7 @@ public class InvasionWorld extends World
         player = new Ship();
         addObject(player, getWidth()/2, getHeight()/2 + getHeight()/3 + getHeight()/15);
 
+        // create healthbar 
         health health = new health();
         addObject(health, health.getImage().getWidth()*3+5 , 20);
         health health2 = new health();
@@ -41,6 +42,7 @@ public class InvasionWorld extends World
         health health3 = new health();
         addObject(health3, health.getImage().getWidth()*1-5 , 20);
 
+        // create barriers
         int BarrierLength = 32;
         int BarrierHeight = 2 ;
         //add center barrier
@@ -51,6 +53,7 @@ public class InvasionWorld extends World
         addBarriers(getWidth()/2+getWidth()/4,BarrierLength, BarrierHeight);
         addSpaceInvaders(LAYERS,COLUMNS);
 
+        // create scoreboard
         scoreObj = new Score();
         scoreObj.setScore(0);
         addObject(scoreObj, 60, 240);
@@ -66,6 +69,7 @@ public class InvasionWorld extends World
     {
         if (playerWin)
         {
+            // level reset > new spaceinvaders
             addSpaceInvaders(LAYERS, COLUMNS);
             addBarriers(getWidth()/2+getWidth()/4, 32, 2);
             addBarriers(getWidth()/2, 32, 2);
@@ -75,6 +79,7 @@ public class InvasionWorld extends World
         }
         else
         {
+            // game over
             showText( "GAME OVER, YEAH", getWidth()/2, getHeight()/2);
             Greenfoot.playSound("explosion.wav");
             Greenfoot.stop();
@@ -90,8 +95,10 @@ public class InvasionWorld extends World
      */
     private void addSpaceInvaders(int layers, int columns)
     {
+        // create 4 layers of space invaders
         for (int i = 0; i < columns; i ++)
         {
+            // layers 1 & 2
             for (int j = 1; j <= layers/3; j ++)
             {
                 SpaceInvader spaceInvader = new SpaceInvader(3,j,i);
@@ -99,6 +106,7 @@ public class InvasionWorld extends World
                 int y = (int)((j * (spaceInvader.getImage().getHeight() + yBuffer)) + yBufferBuffer);
                 addObject(spaceInvader, x , y);
             }
+            // layers 3 & 4
             for (int j = 3;  layers/3 < j && j <= 2*layers/3; j ++)
             {
                 SpaceInvader spaceInvader = new SpaceInvader(2,j,i);
@@ -118,7 +126,7 @@ public class InvasionWorld extends World
      */
     public void addBarriers(int position, int width, int layer)
     {
-        //Adds a generic barrier with a certian position, width, and layer
+        // creates barriers
         for(int i =0; i < width; i++)
         {
             for(int j = 0; j <layer; j ++)
@@ -136,6 +144,7 @@ public class InvasionWorld extends World
      */
     public void checkLeftEdge(java.util.List invader)
     {
+        // checks for left border
         SpaceInvader spaceInvader = (SpaceInvader)invader.get(0);
         for (int i = 0; invader.size() > i; i ++)
         {
@@ -144,6 +153,7 @@ public class InvasionWorld extends World
                 spaceInvader = (SpaceInvader)invader.get(i);
             }
         }
+        // dropdown initiation
         if (spaceInvader.getX() + spaceInvader.getSpeed() - spaceInvader.getImage().getWidth()/2 < 0)
         {
             invaderLevel++;
@@ -156,6 +166,7 @@ public class InvasionWorld extends World
      */
     public void checkRightEdge(java.util.List invader)
     {
+        // checks for right border
         SpaceInvader spaceInvader = (SpaceInvader)invader.get(0);
         for (int i = 0; invader.size() > i; i ++)
         {
@@ -164,6 +175,7 @@ public class InvasionWorld extends World
                 spaceInvader = (SpaceInvader)invader.get(i);
             }
         }
+        // dropdown initiation
         if (spaceInvader.getX() + spaceInvader.getSpeed()+ spaceInvader.getImage().getWidth()/2 > getWidth())
         {
             invaderLevel++;
@@ -179,6 +191,7 @@ public class InvasionWorld extends World
      */
     public SpaceInvader findLowestInvader(java.util.List invader, int column)
     {
+        // checks which invader can shoot (which is lowest)
         SpaceInvader spaceInvader= new SpaceInvader(1, -1, 12);
         for (int i = 0; invader.size() > i; i ++)
         {
@@ -207,6 +220,7 @@ public class InvasionWorld extends World
         counter ++;
         scoreObj.setScore(score);
 
+        // space invaders movement sounds
         if (counter % timerSpeed==0)
         {
             switch (sound) {
@@ -225,6 +239,8 @@ public class InvasionWorld extends World
 
             }
         }
+        
+        // space invaders movement
         if (invaderLevel % 2== 0)
         {
             checkRightEdge(invaders);
@@ -232,6 +248,8 @@ public class InvasionWorld extends World
         else {
             checkLeftEdge(invaders);
         }
+        
+        // random fire function
         if (counter % fireSpeed ==0)
         {
             int firenum = COLUMNS - 4 - Greenfoot.getRandomNumber(5);

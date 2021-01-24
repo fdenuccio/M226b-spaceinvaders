@@ -27,20 +27,24 @@ public class InvaderBullet extends Actor
 
     private boolean checkCollision()
     {
+        // bullet ob bullet hit detection
         if (getOneIntersectingObject (ShipBullet.class) != null)
         {
             getWorld().removeObject(getOneIntersectingObject (ShipBullet.class));
             getWorld().removeObject(this);
             return true;
         }
+        // barrier hit detection
         if (getOneIntersectingObject (Barrier.class) != null)
         {
             getWorld().removeObject(getOneIntersectingObject (Barrier.class));
             getWorld().removeObject(this);
             return true;
         } 
+        // player hit & death detection
         else if (getOneIntersectingObject (Ship.class) != null)
         {
+            Greenfoot.playSound("hit.wav");
             damage = 1;
             if (health.currentHealth == 0){
                 getWorld().removeObject(getOneIntersectingObject (Ship.class));
@@ -61,6 +65,7 @@ public class InvaderBullet extends Actor
      */
     public void act() 
     {
+        // delete if out of screen
         if (getY() >= getWorld().getHeight()-5)
         {
             getWorld().removeObject(this);
@@ -69,6 +74,7 @@ public class InvaderBullet extends Actor
         {
             for (int i = 0; i < speed; i ++)
             {
+                // bullet movement & speed
                 setLocation(getX(), getY() + 1);
                 if (checkCollision())
                 {
@@ -86,6 +92,7 @@ public class InvaderBullet extends Actor
      */
     public InvasionWorld getWorld()
     {
+        // Return the world that this actor lives in
         return (InvasionWorld)(super.getWorld());
     }
 }
